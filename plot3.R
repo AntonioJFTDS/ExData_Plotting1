@@ -1,24 +1,20 @@
 dev.off()
 
+plot(data$Datetime, data$Sub_metering_1,
+     type="l",
+     xlab = "", # so "data$Datetime" does not appear on the axe-X
+     ylab = "Energy sub metering")
 
-> with(data, plot(Wind, Ozone, main = "Ozone and Wind in New York City", type = "n"))	## Display an empty Graph and the title
-> with(subset(airquality, Month == 5), points(Wind, Ozone, col = "blue"))
-> with(subset(airquality, Month != 5), points(Wind, Ozone, col = "red"))
-> legend("topright", pch= 1, col = c("blue", "red"), legend = c("May","Other Months"))
-## pch is the shape of the sign in the legend box
+lines(data$Datetime,data$Sub_metering_2,
+     col = "red")
 
-
-
-
-
-with(data,plot(x,y,type="n",Date.Time,Global_active_power,col=type="l",ylab = "Global Active Power (kilowatts)"))
+lines(data$Datetime,data$Sub_metering_3,
+     col = "blue")
 
 
-with(data,plot(Datetime,Sub_metering_1,
-               type="l",                                   ## "l" for lines
-               ylab = "Global Active Power (kilowatts)"))
-
-
+legend("topright", col=c("black", "red", "blue"), 
+       lwd=1, # line wide
+       legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 
 dev.copy(png,file="plot3.png")
 
